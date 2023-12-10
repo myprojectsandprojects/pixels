@@ -9,6 +9,8 @@
 #include <sys/time.h>
 // #include <x86intrin.h>
 
+#include "rendering.h"
+
 const int initial_window_width = 1000;
 const int initial_window_height = 600;
 
@@ -145,7 +147,15 @@ int main(int argc, char **argv)
 			}
 		}
 
-		render_frame(window_buffer);
+		// render_frame(window_buffer);
+		Point p1 = {10, 10};
+		Point p2 = {100, 100};
+		uint32_t line_color = 0x0000ff00;
+		PixelBuffer pixels;
+		pixels.data = (uint32_t *)window_buffer->data;
+		pixels.width = window_buffer->width;
+		pixels.height = window_buffer->height;
+		draw_line(p1, p2, line_color, &pixels);
 	
 		XPutImage(display, window, graphics_context, window_buffer,
 			0, 0, // src
